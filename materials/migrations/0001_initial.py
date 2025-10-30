@@ -15,34 +15,108 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Section',
+            name="Section",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Введите название раздела', max_length=200, verbose_name='Название раздела')),
-                ('description', models.TextField(blank=True, help_text='Введите описание раздела', null=True, verbose_name='Описание раздела')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('owner', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Владелец раздела')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Введите название раздела",
+                        max_length=200,
+                        verbose_name="Название раздела",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Введите описание раздела",
+                        null=True,
+                        verbose_name="Описание раздела",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Владелец раздела",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Раздед',
-                'verbose_name_plural': 'Разделы',
+                "verbose_name": "Раздед",
+                "verbose_name_plural": "Разделы",
             },
         ),
         migrations.CreateModel(
-            name='Material',
+            name="Material",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Введите название материала', max_length=200, verbose_name='Название материала')),
-                ('description', models.TextField(blank=True, help_text='Введите описание материала', null=True, verbose_name='Описание материала')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('owner', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Владелец материала')),
-                ('course', models.ForeignKey(blank=True, help_text='Выберите курс', null=True, on_delete=django.db.models.deletion.SET_NULL, to='materials.section', verbose_name='Курс')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Введите название материала",
+                        max_length=200,
+                        verbose_name="Название материала",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Введите описание материала",
+                        null=True,
+                        verbose_name="Описание материала",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Владелец материала",
+                    ),
+                ),
+                (
+                    "course",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Выберите курс",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="materials.section",
+                        verbose_name="Курс",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Материал',
-                'verbose_name_plural': 'Материалы',
+                "verbose_name": "Материал",
+                "verbose_name_plural": "Материалы",
             },
         ),
     ]
