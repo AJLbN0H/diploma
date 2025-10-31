@@ -8,4 +8,4 @@ class MaterialSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Material
-        fields = '__all__'
+        fields = "__all__"

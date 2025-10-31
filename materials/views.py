@@ -1,4 +1,9 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, DestroyAPIView, UpdateAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    DestroyAPIView,
+    UpdateAPIView,
+)
 
 from materials.models import Material
 from materials.serializer import MaterialSerializer
