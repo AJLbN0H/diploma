@@ -5,12 +5,48 @@ from rest_framework.generics import (
     UpdateAPIView,
 )
 
-from materials.models import Material
-from materials.serializer import MaterialSerializer
+from materials.models import Material, Section
+from materials.serializer import MaterialSerializer, SectionSerializer
+
+
+class SectionCreateAPIView(CreateAPIView):
+    """Generic создания раздела."""
+
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class SectionListAPIView(ListAPIView):
+    """Generic списка разделов."""
+
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class SectionRetrieveAPIView(ListAPIView):
+    """Generic просмотра подробной информации о разделе."""
+
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class SectionUpdateAPIView(UpdateAPIView):
+    """Generic обновления ирформации раздела."""
+
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class SectionDestroyAPIView(DestroyAPIView):
+    """Generic удаления раздела."""
+
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
 
 
 class MaterialCreateAPIView(CreateAPIView):
-    """Generic создания материалов."""
+    """Generic создания материала."""
 
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
@@ -31,14 +67,14 @@ class MaterialRetrieveAPIView(ListAPIView):
 
 
 class MaterialUpdateAPIView(UpdateAPIView):
-    """Generic обновления ирформации материалов."""
+    """Generic обновления ирформации материала."""
 
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
 
 
 class MaterialDestroyAPIView(DestroyAPIView):
-    """Generic удаления материалов."""
+    """Generic удаления материала."""
 
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
