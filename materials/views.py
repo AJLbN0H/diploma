@@ -44,7 +44,6 @@ class SectionDestroyAPIView(DestroyAPIView):
     serializer_class = SectionSerializer
 
 
-
 class MaterialCreateAPIView(CreateAPIView):
     """Generic создания материала."""
 
