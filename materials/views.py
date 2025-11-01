@@ -1,8 +1,7 @@
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Material, Section
-from materials.permission import IsOwner, IsStudent, IsTeacher, IsAdmin, IsAdminOrTeacherOwner, IsAdminOrTeacher, \
+from materials.permission import IsAdminOrTeacherOwner, IsAdminOrTeacher, \
     IsAdminOrTeacherOrStudent
 from materials.serializer import MaterialSerializer, SectionSerializer
 
