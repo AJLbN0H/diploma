@@ -20,13 +20,13 @@ class UserCreateApiView(CreateAPIView):
         user.set_password(user.password)
 
         if user.role == 'admin':
-            group = Group.objects.get_or_create(name='Администраторы')
+            group, created = Group.objects.get_or_create(name='Администраторы')
             user.groups.add(group)
         elif user.role == 'teacher':
-            group = Group.objects.get_or_create(name='Преподователи')
+            group, created = Group.objects.get_or_create(name='Преподователи')
             user.groups.add(group)
         elif user.role == 'student':
-            group = Group.objects.get_or_create(name='Студенты')
+            group, created = Group.objects.get_or_create(name='Студенты')
             user.groups.add(group)
 
         user.save()
