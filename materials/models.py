@@ -39,6 +39,7 @@ class Material(models.Model):
         Section,
         verbose_name="Раздел",
         on_delete=models.CASCADE,
+        default=None
     )
     owner = models.ForeignKey(
         User,
