@@ -1,10 +1,10 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Material, Section
-from materials.permission import (
+from permissions import (
     IsAdminOrTeacherOwner,
     IsAdminOrTeacher,
-    IsAdminOrTeacherOrStudent,
 )
 from materials.serializer import MaterialSerializer, SectionSerializer
 
@@ -46,7 +46,7 @@ class MaterialViewSet(ModelViewSet):
         if self.action == "create":
             self.permission_classes = [IsAdminOrTeacher]
         if self.action == "list":
-            self.permission_classes = [IsAdminOrTeacherOrStudent]
+            self.permission_classes = [IsAuthenticated]
         elif self.action in ["partial_update", "update", "retrieve"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
         elif self.action == "destroy":
