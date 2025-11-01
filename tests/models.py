@@ -58,6 +58,13 @@ class Question(models.Model):
         choices=QUESTION_TYPE,
         default="single",
     )
+    owner = models.ForeignKey(
+        User,
+        verbose_name="Создатель вопроса",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -76,6 +83,9 @@ class Answer(models.Model):
     question = models.ForeignKey(
         Question, verbose_name="Вопрос", on_delete=models.CASCADE, blank=True,
         null=True,
+    )
+    student = models.ForeignKey(
+        User, verbose_name="Студент", blank=True, null=True, on_delete=models.CASCADE
     )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
