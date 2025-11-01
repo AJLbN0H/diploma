@@ -7,5 +7,5 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer модели User."""
 
     class Meta:
-        model = User.objects.all()
+        model = User
         fields = "__all__"
