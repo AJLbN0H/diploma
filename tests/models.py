@@ -15,6 +15,7 @@ class Test(models.Model):
         Material,
         verbose_name="Материал",
         on_delete=models.CASCADE,
+        default=None
     )
     owner = models.ForeignKey(
         User,
@@ -39,11 +40,11 @@ class Test(models.Model):
 
 class Question(models.Model):
 
-    QUESTION_TYPE = {
-        "single": "один правильный",
-        "multiple": "несколько правильных",
-        "text": "текстовый ответ",
-    }
+    QUESTION_TYPE = [
+        ("single", "один правильный"),
+        ("multiple", "несколько правильных"),
+        ("text", "текстовый ответ"),
+    ]
 
     name = models.CharField(max_length=200, verbose_name="Название вопроса")
     text = models.TextField(
@@ -53,9 +54,10 @@ class Question(models.Model):
         Test,
         verbose_name="Тест",
         on_delete=models.CASCADE,
+        default=None
     )
     question_type = models.CharField(
-        max_length=8, verbose_name="Варианты ответов", choices=QUESTION_TYPE
+        max_length=8, verbose_name="Варианты ответов", choices=QUESTION_TYPE, default='single'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -76,6 +78,7 @@ class Answer(models.Model):
         Question,
         verbose_name="Вопрос",
         on_delete=models.CASCADE,
+        default=None
     )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -94,7 +97,7 @@ class TestResult(models.Model):
         User, verbose_name="Студент", blank=True, null=True, on_delete=models.CASCADE
     )
     question = models.ForeignKey(
-        Question, verbose_name="Вопрос", on_delete=models.SET_NULL
+        Question, verbose_name="Вопрос", on_delete=models.CASCADE
     )
     answers = models.JSONField(verbose_name="Сохранение ответов студента в json файл")
 
