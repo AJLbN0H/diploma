@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
 from tests.views import (
@@ -14,9 +14,9 @@ from tests.views import (
 app_name = "tests"
 
 router = SimpleRouter()
-router.register("test/", TestViewSet)
-router.register("question/", QuestionViewSet)
-router.register("answer/", AnswerViewSet)
+router.register("test", TestViewSet, basename='test')
+router.register("question", QuestionViewSet, basename='question')
+router.register("answer", AnswerViewSet, basename='answer')
 
 urlpatterns = [
     path(
@@ -24,15 +24,16 @@ urlpatterns = [
         TestResultCreateAPIView.as_view(),
         name="test_result_create",
     ),
-    path("test/result/list/", TestResultListAPIView.as_view(), name="test_result_list"),
+    path("test/result/", TestResultListAPIView.as_view(), name="test_result_list"),
     path(
-        "test/result/retrieve/",
+        "test/result/retrieve/<int:pk>/",
         TestResultRetrieveAPIView.as_view(),
         name="test_result_retrieve",
     ),
     path(
-        "test/result/delete/",
+        "test/result/delete/<int:pk>/",
         TestResultDestroyAPIView.as_view(),
         name="test_result_delete",
     ),
-] + router.urls
+    path('', include(router.urls))
+]
