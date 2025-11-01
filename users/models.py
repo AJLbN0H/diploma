@@ -6,14 +6,12 @@ class User(AbstractUser):
     username = None
 
     ROLE = [
-        ('admin', 'Администратор'),
-        ('teacher', 'Преподователь'),
-        ('student', 'Студент')
+        ("admin", "Администратор"),
+        ("teacher", "Преподователь"),
+        ("student", "Студент"),
     ]
 
-    email = models.EmailField(
-        unique=True, verbose_name="Почта"
-    )
+    email = models.EmailField(unique=True, verbose_name="Почта")
     avatar = models.ImageField(
         upload_to="users/",
         verbose_name="Аватар",
@@ -32,7 +30,9 @@ class User(AbstractUser):
         blank=True,
         null=True,
     )
-    role = models.CharField(max_length=7, verbose_name='Роль', choices=ROLE, default='student')
+    role = models.CharField(
+        max_length=7, verbose_name="Роль", choices=ROLE, default="student"
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

@@ -11,7 +11,7 @@ from tests.views import (
     TestResultRetrieveAPIView,
 )
 
-app_name = 'tests'
+app_name = "tests"
 
 router = SimpleRouter()
 router.register("test/", TestViewSet)
