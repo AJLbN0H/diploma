@@ -12,7 +12,8 @@ class Test(models.Model):
         null=True,
     )
     material = models.ForeignKey(
-        Material, verbose_name="Материал", on_delete=models.CASCADE, default=None
+        Material, verbose_name="Материал", on_delete=models.CASCADE, blank=True,
+        null=True,
     )
     owner = models.ForeignKey(
         User,
@@ -48,7 +49,8 @@ class Question(models.Model):
         verbose_name="Текст вопроса",
     )
     test = models.ForeignKey(
-        Test, verbose_name="Тест", on_delete=models.CASCADE, default=None
+        Test, verbose_name="Тест", on_delete=models.CASCADE, blank=True,
+        null=True,
     )
     question_type = models.CharField(
         max_length=8,
@@ -72,7 +74,8 @@ class Answer(models.Model):
         verbose_name="Ответ на вопрос",
     )
     question = models.ForeignKey(
-        Question, verbose_name="Вопрос", on_delete=models.CASCADE, default=None
+        Question, verbose_name="Вопрос", on_delete=models.CASCADE, blank=True,
+        null=True,
     )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
