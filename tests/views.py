@@ -9,9 +9,6 @@ from rest_framework.viewsets import ModelViewSet
 from permissions import (
     IsAdminOrTeacher,
     IsAdminOrTeacherOwner,
-    IsStudent,
-    IsAdmin,
-    IsStudentOwner,
     IsAdminOrStudent,
     IsAdminOrStudentOwner,
 )
