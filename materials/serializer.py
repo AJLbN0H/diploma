@@ -4,7 +4,7 @@ from materials.models import Material, Section
 
 
 class MaterialSerializer(serializers.ModelSerializer):
-    """Сериалайзер модели Material."""
+    """Serializer модели Material."""
 
     class Meta:
         model = Material
@@ -12,7 +12,7 @@ class MaterialSerializer(serializers.ModelSerializer):
 
 
 class SectionSerializer(serializers.ModelSerializer):
-    """Сериалайзер модели Section."""
+    """Serializer модели Section."""
 
     class Meta:
         model = Section
