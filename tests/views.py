@@ -1,8 +1,18 @@
-from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    DestroyAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+)
 from rest_framework.viewsets import ViewSet
 
 from tests.models import Test, Question, Answer, TestResult
-from tests.serializer import TestSerializer, QuestionSerializer, AnswerSerializer, TestResultSerializer
+from tests.serializer import (
+    TestSerializer,
+    QuestionSerializer,
+    AnswerSerializer,
+    TestResultSerializer,
+)
 
 
 class TestViewSet(ViewSet):

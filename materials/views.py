@@ -16,4 +16,3 @@ class MaterialViewSet(ViewSet):
 
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
-

@@ -24,7 +24,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('text', 'question')
+        fields = ("text", "question")
 
 
 class TestResultSerializer(serializers.ModelSerializer):
