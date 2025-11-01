@@ -1,8 +1,11 @@
-from django.urls import path
+from rest_framework.routers import SimpleRouter
 
 from materials.views import SectionViewSet, MaterialViewSet
 
-urlpatterns = [
-    path("section/", SectionViewSet.as_view(), name="section"),
-    path("material/", MaterialViewSet.as_view(), name="material"),
-]
+app_name = 'materials'
+
+router = SimpleRouter()
+router.register("section/", SectionViewSet)
+router.register("material/", MaterialViewSet)
+
+urlpatterns = [] + router.urls
