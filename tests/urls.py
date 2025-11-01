@@ -14,9 +14,9 @@ from tests.views import (
 app_name = "tests"
 
 router = SimpleRouter()
-router.register("test", TestViewSet, basename='test')
-router.register("question", QuestionViewSet, basename='question')
-router.register("answer", AnswerViewSet, basename='answer')
+router.register("test", TestViewSet, basename="test")
+router.register("question", QuestionViewSet, basename="question")
+router.register("answer", AnswerViewSet, basename="answer")
 
 urlpatterns = [
     path(
@@ -35,5 +35,5 @@ urlpatterns = [
         TestResultDestroyAPIView.as_view(),
         name="test_result_delete",
     ),
-    path('', include(router.urls))
+    path("", include(router.urls)),
 ]

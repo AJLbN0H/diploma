@@ -19,14 +19,14 @@ class UserCreateApiView(CreateAPIView):
         user = serializer.save(is_active=True)
         user.set_password(user.password)
 
-        if user.role == 'admin':
-            group, created = Group.objects.get_or_create(name='Администраторы')
+        if user.role == "admin":
+            group, created = Group.objects.get_or_create(name="Администраторы")
             user.groups.add(group)
-        elif user.role == 'teacher':
-            group, created = Group.objects.get_or_create(name='Преподователи')
+        elif user.role == "teacher":
+            group, created = Group.objects.get_or_create(name="Преподователи")
             user.groups.add(group)
-        elif user.role == 'student':
-            group, created = Group.objects.get_or_create(name='Студенты')
+        elif user.role == "student":
+            group, created = Group.objects.get_or_create(name="Студенты")
             user.groups.add(group)
 
         user.save()

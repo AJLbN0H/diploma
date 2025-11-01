@@ -6,9 +6,7 @@ from materials.views import SectionViewSet, MaterialViewSet
 app_name = "materials"
 
 router = SimpleRouter()
-router.register("section", viewset=SectionViewSet, basename='section')
-router.register("material", viewset=MaterialViewSet, basename='material')
+router.register("section", viewset=SectionViewSet, basename="section")
+router.register("material", viewset=MaterialViewSet, basename="material")
 
-urlpatterns = [
-    path('', include(router.urls))
-]
+urlpatterns = [path("", include(router.urls))]

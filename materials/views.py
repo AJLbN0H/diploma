@@ -1,8 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Material, Section
-from materials.permission import IsAdminOrTeacherOwner, IsAdminOrTeacher, \
-    IsAdminOrTeacherOrStudent
+from materials.permission import (
+    IsAdminOrTeacherOwner,
+    IsAdminOrTeacher,
+    IsAdminOrTeacherOrStudent,
+)
 from materials.serializer import MaterialSerializer, SectionSerializer
 
 
@@ -29,6 +32,7 @@ class SectionViewSet(ModelViewSet):
         """Метод переопределяющий при создании урока поле owner на текущего авторизованного пользователя."""
 
         serializer.save(owner=self.request.user)
+
 
 class MaterialViewSet(ModelViewSet):
     """ViewSet модели Material."""

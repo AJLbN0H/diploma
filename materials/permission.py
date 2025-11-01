@@ -31,7 +31,6 @@ class IsOwner(BasePermission):
         return False
 
 
-
 class IsAdminOrTeacherOwner(BasePermission):
 
     def has_permission(self, request, view):
@@ -44,7 +43,7 @@ class IsAdminOrTeacherOwner(BasePermission):
         return is_admin or is_teacher
 
     def has_object_permission(self, request, view, obj):
-        if IsAdmin().has_permission(request,view):
+        if IsAdmin().has_permission(request, view):
             return True
 
         if IsTeacher().has_permission(request, view):
@@ -74,6 +73,6 @@ class IsAdminOrTeacherOrStudent(BasePermission):
 
         is_admin = IsAdmin().has_permission(request, view)
         is_teacher = IsTeacher().has_permission(request, view)
-        is_student = IsStudent().has_permission(request,view)
+        is_student = IsStudent().has_permission(request, view)
 
         return is_admin or is_teacher or is_student
