@@ -4,7 +4,7 @@ from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
 )
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from tests.models import Test, Question, Answer, TestResult
 from tests.serializer import (
@@ -15,21 +15,21 @@ from tests.serializer import (
 )
 
 
-class TestViewSet(ViewSet):
+class TestViewSet(ModelViewSet):
     """ViewSet модели Test."""
 
     queryset = Test.objects.all()
     serializer_class = TestSerializer
 
 
-class QuestionViewSet(ViewSet):
+class QuestionViewSet(ModelViewSet):
     """ViewSet модели Question."""
 
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
 
-class AnswerViewSet(ViewSet):
+class AnswerViewSet(ModelViewSet):
     """ViewSet модели Answer."""
 
     queryset = Answer.objects.all()

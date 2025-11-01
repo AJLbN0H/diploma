@@ -1,17 +1,17 @@
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Material, Section
 from materials.serializer import MaterialSerializer, SectionSerializer
 
 
-class SectionViewSet(ViewSet):
+class SectionViewSet(ModelViewSet):
     """ViewSet модели Section."""
 
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
 
 
-class MaterialViewSet(ViewSet):
+class MaterialViewSet(ModelViewSet):
     """ViewSet модели Material."""
 
     queryset = Material.objects.all()
