@@ -12,7 +12,10 @@ class Test(models.Model):
         null=True,
     )
     material = models.ForeignKey(
-        Material, verbose_name="Материал", on_delete=models.CASCADE, blank=True,
+        Material,
+        verbose_name="Материал",
+        on_delete=models.CASCADE,
+        blank=True,
         null=True,
     )
     owner = models.ForeignKey(
@@ -49,7 +52,10 @@ class Question(models.Model):
         verbose_name="Текст вопроса",
     )
     test = models.ForeignKey(
-        Test, verbose_name="Тест", on_delete=models.CASCADE, blank=True,
+        Test,
+        verbose_name="Тест",
+        on_delete=models.CASCADE,
+        blank=True,
         null=True,
     )
     question_type = models.CharField(
@@ -81,7 +87,10 @@ class Answer(models.Model):
         verbose_name="Ответ на вопрос",
     )
     question = models.ForeignKey(
-        Question, verbose_name="Вопрос", on_delete=models.CASCADE, blank=True,
+        Question,
+        verbose_name="Вопрос",
+        on_delete=models.CASCADE,
+        blank=True,
         null=True,
     )
     student = models.ForeignKey(

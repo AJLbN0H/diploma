@@ -6,8 +6,15 @@ from rest_framework.generics import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from permissions import IsAdminOrTeacher, IsAdminOrTeacherOwner, IsStudent, IsAdmin, IsStudentOwner, IsAdminOrStudent, \
-    IsAdminOrStudentOwner
+from permissions import (
+    IsAdminOrTeacher,
+    IsAdminOrTeacherOwner,
+    IsStudent,
+    IsAdmin,
+    IsStudentOwner,
+    IsAdminOrStudent,
+    IsAdminOrStudentOwner,
+)
 from tests.models import Test, Question, Answer, TestResult
 from tests.serializer import (
     TestSerializer,
@@ -90,6 +97,7 @@ class AnswerViewSet(ModelViewSet):
         """Метод переопределяющий при создании урока поле student на текущего авторизованного пользователя."""
 
         serializer.save(student=self.request.user)
+
 
 class TestResultListAPIView(ListAPIView):
     """Generic списка результата тестов."""
