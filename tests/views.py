@@ -32,11 +32,11 @@ class TestViewSet(ModelViewSet):
 
         if self.action == "create":
             self.permission_classes = [IsAdminOrTeacher]
-        if self.action == "list":
+        elif self.action == "list":
             self.permission_classes = [IsAdminOrTeacher]
         elif self.action in ["partial_update", "update", "retrieve"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
-        if self.action == "destroy":
+        elif self.action == "destroy":
             self.permission_classes = [IsAdminOrTeacherOwner]
         return super().get_permissions()
 
@@ -57,11 +57,11 @@ class QuestionViewSet(ModelViewSet):
 
         if self.action == "create":
             self.permission_classes = [IsAdminOrTeacher]
-        if self.action == "list":
+        elif self.action == "list":
             self.permission_classes = [IsAdminOrTeacher]
         elif self.action in ["partial_update", "update", "retrieve"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
-        if self.action == "destroy":
+        elif self.action == "destroy":
             self.permission_classes = [IsAdminOrTeacherOwner]
         return super().get_permissions()
 
@@ -82,11 +82,11 @@ class AnswerViewSet(ModelViewSet):
 
         if self.action == "create":
             self.permission_classes = [IsAdminOrStudent]
-        if self.action == "list":
+        elif self.action == "list":
             self.permission_classes = [IsAuthenticated]
         elif self.action in ["partial_update", "update", "retrieve"]:
             self.permission_classes = [IsAdminOrStudentOwner]
-        if self.action == "destroy":
+        elif self.action == "destroy":
             self.permission_classes = [IsAdminOrStudentOwner]
         return super().get_permissions()
 
