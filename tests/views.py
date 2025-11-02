@@ -13,7 +13,8 @@ from permissions import (
     IsAdminOrTeacher,
     IsAdminOrTeacherOwner,
     IsAdminOrStudent,
-    IsAdminOrStudentOwner, IsStudentOwner,
+    IsAdminOrStudentOwner,
+    IsStudentOwner,
 )
 
 from tests.models import Test, Question, Answer, TestResult
@@ -117,17 +118,19 @@ class TestSubmitView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=400)
 
-        result_data = TestCalculateService.calculate_results(self, test, serializer.validated_data['answers'])
+        result_data = TestCalculateService.calculate_results(
+            self, test, serializer.validated_data["answers"]
+        )
 
         test_result = TestResult.objects.create(
             student=request.user,
             test=test,
-            score=result_data['score'],
-            total_questions=result_data['total_questions'],
-            correct_answers=result_data['correct_answers'],
-            percentage=result_data['percentage'],
-            is_passed=result_data['is_passed'],
-            answers_data=serializer.validated_data['answers']
+            score=result_data["score"],
+            total_questions=result_data["total_questions"],
+            correct_answers=result_data["correct_answers"],
+            percentage=result_data["percentage"],
+            is_passed=result_data["is_passed"],
+            answers_data=serializer.validated_data["answers"],
         )
 
         return Response(result_data, status=201)

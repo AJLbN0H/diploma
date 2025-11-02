@@ -30,13 +30,19 @@ class AnswerSerializer(serializers.ModelSerializer):
 class TestResultSerializer(serializers.ModelSerializer):
     """Serializer модели TestResult."""
 
-    test_name = serializers.CharField(source='test.name', read_only=True)
+    test_name = serializers.CharField(source="test.name", read_only=True)
 
     class Meta:
         model = TestResult
         fields = [
-            'id', 'test_name', 'score', 'total_questions',
-            'correct_answers', 'percentage', 'is_passed', 'completed_at'
+            "id",
+            "test_name",
+            "score",
+            "total_questions",
+            "correct_answers",
+            "percentage",
+            "is_passed",
+            "completed_at",
         ]
 
 
@@ -45,7 +51,7 @@ class SafeAnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ['id', 'text']
+        fields = ["id", "text"]
 
 
 class SafeQuestionSerializer(serializers.ModelSerializer):
@@ -55,18 +61,25 @@ class SafeQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'name', 'text', 'question_type', 'answers']
+        fields = ["id", "name", "text", "question_type", "answers"]
 
 
 class TestDetailSerializer(serializers.ModelSerializer):
     """Serializer для вывода детальной информации по тесту с безопасными вопросами."""
 
     questions = SafeQuestionSerializer(many=True, read_only=True)
-    material_name = serializers.CharField(source='material.name', read_only=True)
+    material_name = serializers.CharField(source="material.name", read_only=True)
 
     class Meta:
         model = Test
-        fields = ['id', 'name', 'description', 'passing_score', 'material_name', 'questions']
+        fields = [
+            "id",
+            "name",
+            "description",
+            "passing_score",
+            "material_name",
+            "questions",
+        ]
 
 
 class AnswerSubmissionSerializer(serializers.Serializer):
@@ -74,9 +87,7 @@ class AnswerSubmissionSerializer(serializers.Serializer):
 
     question_id = serializers.IntegerField()
     selected_answers = serializers.ListField(
-        child=serializers.IntegerField(),
-        required=False,
-        allow_empty=True
+        child=serializers.IntegerField(), required=False, allow_empty=True
     )
     text_answer = serializers.CharField(required=False, allow_blank=True)
 
@@ -85,6 +96,3 @@ class TestSubmissionSerializer(serializers.Serializer):
     """Serializer для валидации списка ответов на вопросы."""
 
     answers = AnswerSubmissionSerializer(many=True)
-
-
-

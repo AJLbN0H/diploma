@@ -17,7 +17,7 @@ class Test(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name='answers'
+        related_name="answers",
     )
     owner = models.ForeignKey(
         User,
@@ -58,7 +58,7 @@ class Question(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name='questions'
+        related_name="questions",
     )
     question_type = models.CharField(
         max_length=8,
@@ -94,7 +94,7 @@ class Answer(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name='answers'
+        related_name="answers",
     )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -116,9 +116,15 @@ class TestResult(models.Model):
         Test, verbose_name="Тест", on_delete=models.CASCADE, blank=True, null=True
     )
     score = models.IntegerField(verbose_name="Баллы", blank=True, null=True)
-    total_questions = models.IntegerField(verbose_name="Всего вопросов", blank=True, null=True)
-    correct_answers = models.IntegerField(verbose_name="Правильных ответов", blank=True, null=True)
-    percentage = models.FloatField(verbose_name="Процент правильных ответов", blank=True, null=True)
+    total_questions = models.IntegerField(
+        verbose_name="Всего вопросов", blank=True, null=True
+    )
+    correct_answers = models.IntegerField(
+        verbose_name="Правильных ответов", blank=True, null=True
+    )
+    percentage = models.FloatField(
+        verbose_name="Процент правильных ответов", blank=True, null=True
+    )
     is_passed = models.BooleanField(verbose_name="Тест пройден", blank=True, null=True)
     completed_at = models.DateTimeField(auto_now_add=True)
 

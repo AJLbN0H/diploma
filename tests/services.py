@@ -13,22 +13,32 @@ class TestCalculateService:
 
         for question in questions:
             student_answer = next(
-                (answer for answer in submitted_answers if answer['question_id'] == question.id),
-                None
+                (
+                    answer
+                    for answer in submitted_answers
+                    if answer["question_id"] == question.id
+                ),
+                None,
             )
 
-            if student_answer and TestCalculateService._check_answer_correctness(question, student_answer):
+            if student_answer and TestCalculateService._check_answer_correctness(
+                question, student_answer
+            ):
                 correct_answers_count += 1
 
-        percentage = (correct_answers_count / total_questions) * 100 if total_questions > 0 else 0
+        percentage = (
+            (correct_answers_count / total_questions) * 100
+            if total_questions > 0
+            else 0
+        )
         is_passed = percentage >= test.passing_score
 
         return {
-            'score': correct_answers_count,
-            'total_questions': total_questions,
-            'correct_answers': correct_answers_count,
-            'percentage': round(percentage, 2),
-            'is_passed': is_passed
+            "score": correct_answers_count,
+            "total_questions": total_questions,
+            "correct_answers": correct_answers_count,
+            "percentage": round(percentage, 2),
+            "is_passed": is_passed,
         }
 
     @staticmethod
@@ -38,11 +48,11 @@ class TestCalculateService:
         if not student_answer:
             return False
 
-        if question.question_type == 'single':
+        if question.question_type == "single":
             return TestCalculateService._check_single_choice(question, student_answer)
-        elif question.question_type == 'multiple':
+        elif question.question_type == "multiple":
             return TestCalculateService._check_multiple_choice(question, student_answer)
-        elif question.question_type == 'text':
+        elif question.question_type == "text":
             return TestCalculateService._check_text_answer(question, student_answer)
 
         return False
@@ -51,14 +61,13 @@ class TestCalculateService:
     def _check_single_choice(question, student_answer):
         """Проверка одиночного выбора."""
 
-        selected_answers = student_answer.get('selected_answers', [])
+        selected_answers = student_answer.get("selected_answers", [])
         if len(selected_answers) != 1:
             return False
 
         try:
             selected_answer = Answer.objects.get(
-                id=selected_answers[0],
-                question=question
+                id=selected_answers[0], question=question
             )
             return selected_answer.is_correct
         except Answer.DoesNotExist:
@@ -68,12 +77,12 @@ class TestCalculateService:
     def _check_multiple_choice(question, student_answer):
         """Проверка множественного выбора."""
 
-        selected_answers = set(student_answer.get('selected_answers', []))
+        selected_answers = set(student_answer.get("selected_answers", []))
         if not selected_answers:
             return False
 
         correct_answers = set(
-            question.answers.filter(is_correct=True).values_list('id', flat=True)
+            question.answers.filter(is_correct=True).values_list("id", flat=True)
         )
 
         return correct_answers == selected_answers
@@ -82,7 +91,7 @@ class TestCalculateService:
     def _check_text_answer(question, student_answer):
         """Проверка текстового ответа."""
 
-        text_answer = student_answer.get('text_answer', '').strip().lower()
+        text_answer = student_answer.get("text_answer", "").strip().lower()
         if not text_answer:
             return False
 
