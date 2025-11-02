@@ -17,6 +17,7 @@ class Test(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
+        related_name='answers'
     )
     owner = models.ForeignKey(
         User,
@@ -57,6 +58,7 @@ class Question(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
+        related_name='questions'
     )
     question_type = models.CharField(
         max_length=8,
@@ -92,6 +94,7 @@ class Answer(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
+        related_name='answers'
     )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -110,14 +113,13 @@ class TestResult(models.Model):
         User, verbose_name="Студент", blank=True, null=True, on_delete=models.CASCADE
     )
     test = models.ForeignKey(
-        Test, verbose_name="Тест", on_delete=models.CASCADE
+        Test, verbose_name="Тест", on_delete=models.CASCADE, blank=True, null=True
     )
-    score = models.IntegerField(verbose_name="Баллы")
-    total_questions = models.IntegerField(verbose_name="Всего вопросов")
-    correct_answers = models.IntegerField(verbose_name="Правильных ответов")
-    percentage = models.FloatField(verbose_name="Процент правильных ответов")
-    is_passed = models.BooleanField(verbose_name="Тест пройден")
-    answers_data = models.JSONField(verbose_name="Сохранение ответов студента в json файл")
+    score = models.IntegerField(verbose_name="Баллы", blank=True, null=True)
+    total_questions = models.IntegerField(verbose_name="Всего вопросов", blank=True, null=True)
+    correct_answers = models.IntegerField(verbose_name="Правильных ответов", blank=True, null=True)
+    percentage = models.FloatField(verbose_name="Процент правильных ответов", blank=True, null=True)
+    is_passed = models.BooleanField(verbose_name="Тест пройден", blank=True, null=True)
     completed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
