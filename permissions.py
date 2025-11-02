@@ -2,21 +2,21 @@ from rest_framework.permissions import BasePermission
 
 
 class IsAdmin(BasePermission):
-    """Класс проверящий является ли пользователь администратором"""
+    """Класс проверяющий является ли пользователь администратором"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Администраторы").exists()
 
 
 class IsTeacher(BasePermission):
-    """Класс проверящий является ли пользователь преподователем"""
+    """Класс проверяющий является ли пользователь преподователем"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Преподователи").exists()
 
 
 class IsStudent(BasePermission):
-    """Класс проверящий является ли пользователья стуеднтом"""
+    """Класс проверяющий является ли пользователья стуеднтом"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Студенты").exists()
@@ -32,7 +32,7 @@ class IsOwner(BasePermission):
 
 
 class IsStudentOwner(BasePermission):
-    """Класс проверящий является ли студент владельцем"""
+    """Класс проверяющий является ли студент владельцем"""
 
     def has_object_permission(self, request, view, obj):
         if request.user == obj.student:
@@ -41,7 +41,7 @@ class IsStudentOwner(BasePermission):
 
 
 class IsAdminOrTeacherOwner(BasePermission):
-    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или преподователей, а также проверяет, что преподователь являеться  владельцем."""
+    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или преподователей, а также проверяет, что преподователь является  владельцем."""
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
