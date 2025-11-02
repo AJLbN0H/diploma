@@ -29,7 +29,7 @@ class SectionViewSet(ModelViewSet):
         return super().get_permissions()
 
     def perform_create(self, serializer):
-        """Метод переопределяющий при создании урока поле owner на текущего авторизованного пользователя."""
+        """Метод переопределяющий при создании раздела поле owner на текущего авторизованного пользователя."""
 
         serializer.save(owner=self.request.user)
 
