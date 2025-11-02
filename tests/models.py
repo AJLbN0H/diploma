@@ -121,7 +121,7 @@ class TestResult(models.Model):
     completed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"\nСтудент:{self.student}\nТест: {self.test}\n"
+        return f"\nСтудент: {self.student}\nТест: {self.test}\nРезультат: {self.percentage}"
 
     class Meta:
         verbose_name = "Результат теста"
