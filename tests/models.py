@@ -93,9 +93,6 @@ class Answer(models.Model):
         blank=True,
         null=True,
     )
-    student = models.ForeignKey(
-        User, verbose_name="Студент", blank=True, null=True, on_delete=models.CASCADE
-    )
     is_correct = models.BooleanField(verbose_name="Правильность ответа", default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -112,13 +109,19 @@ class TestResult(models.Model):
     student = models.ForeignKey(
         User, verbose_name="Студент", blank=True, null=True, on_delete=models.CASCADE
     )
-    question = models.ForeignKey(
-        Question, verbose_name="Вопрос", on_delete=models.CASCADE
+    test = models.ForeignKey(
+        Test, verbose_name="Тест", on_delete=models.CASCADE
     )
-    answers = models.JSONField(verbose_name="Сохранение ответов студента в json файл")
+    score = models.IntegerField(verbose_name="Баллы")
+    total_questions = models.IntegerField(verbose_name="Всего вопросов")
+    correct_answers = models.IntegerField(verbose_name="Правильных ответов")
+    percentage = models.FloatField(verbose_name="Процент правильных ответов")
+    is_passed = models.BooleanField(verbose_name="Тест пройден")
+    answers_data = models.JSONField(verbose_name="Сохранение ответов студента в json файл")
+    completed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"\nСтудент:{self.student}\nВопрос: {self.question}\n"
+        return f"\nСтудент:{self.student}\nТест: {self.test}\n"
 
     class Meta:
         verbose_name = "Результат теста"
