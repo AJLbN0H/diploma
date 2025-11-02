@@ -24,19 +24,18 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ("text", "question")
+        fields = "__all__"
 
 
 class TestResultSerializer(serializers.ModelSerializer):
     """Serializer модели TestResult."""
 
     test_name = serializers.CharField(source='test.name', read_only=True)
-    material_name = serializers.CharField(source='test.material.name', read_only=True)
 
     class Meta:
         model = TestResult
         fields = [
-            'id', 'test_name', 'material_name', 'score', 'total_questions',
+            'id', 'test_name', 'score', 'total_questions',
             'correct_answers', 'percentage', 'is_passed', 'completed_at'
         ]
 
