@@ -130,7 +130,6 @@ class TestSubmitView(APIView):
             correct_answers=result_data["correct_answers"],
             percentage=result_data["percentage"],
             is_passed=result_data["is_passed"],
-            answers_data=serializer.validated_data["answers"],
         )
 
         return Response(result_data, status=201)
