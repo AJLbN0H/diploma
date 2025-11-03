@@ -2,28 +2,28 @@ from rest_framework.permissions import BasePermission
 
 
 class IsAdmin(BasePermission):
-    """Класс проверяющий является ли пользователь администратором"""
+    """Класс проверяющий, является ли пользователь администратором"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Администраторы").exists()
 
 
 class IsTeacher(BasePermission):
-    """Класс проверяющий является ли пользователь преподователем"""
+    """Класс проверяющий, является ли пользователь преподователем"""
 
     def has_permission(self, request, view):
-        return request.user.groups.filter(name="Преподователи").exists()
+        return request.user.groups.filter(name="Преподаватели").exists()
 
 
 class IsStudent(BasePermission):
-    """Класс проверяющий является ли пользователья стуеднтом"""
+    """Класс проверяющий, является ли пользователь студентом"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Студенты").exists()
 
 
 class IsOwner(BasePermission):
-    """Класс проверящий является ли пользователь владельцем"""
+    """Класс проверяющий, является ли пользователь владельцем"""
 
     def has_object_permission(self, request, view, obj):
         if request.user == obj.owner:
@@ -32,7 +32,7 @@ class IsOwner(BasePermission):
 
 
 class IsStudentOwner(BasePermission):
-    """Класс проверяющий является ли студент владельцем"""
+    """Класс проверяющий, является ли студент владельцем"""
 
     def has_object_permission(self, request, view, obj):
         if request.user == obj.student:
@@ -41,7 +41,7 @@ class IsStudentOwner(BasePermission):
 
 
 class IsAdminOrTeacherOwner(BasePermission):
-    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или преподователей, а также проверяет, что преподователь является  владельцем."""
+    """Класс проверяющий, что пользователь авторизован и состоит в группе администраторов или преподователей, а также проверяет, что преподователь является  владельцем."""
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
@@ -63,7 +63,7 @@ class IsAdminOrTeacherOwner(BasePermission):
 
 
 class IsAdminOrTeacher(BasePermission):
-    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или преподователей."""
+    """Класс проверяющий, что пользователь авторизован и состоит в группе администраторов или преподователей."""
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
@@ -76,7 +76,7 @@ class IsAdminOrTeacher(BasePermission):
 
 
 class IsAdminOrStudentOwner(BasePermission):
-    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или студентов, a также являеться владельцем."""
+    """Класс проверяющий, что пользователь авторизован и состоит в группе администраторов или студентов, a также является владельцем."""
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
@@ -96,7 +96,7 @@ class IsAdminOrStudentOwner(BasePermission):
 
 
 class IsAdminOrStudent(BasePermission):
-    """Класс проверяющий что пользователь авторизован и состоит в группе администраторов или студентов."""
+    """Класс проверяющий, что пользователь авторизован и состоит в группе администраторов или студентов."""
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
