@@ -6,7 +6,7 @@ from users.models import User
 from users.serializer import UserSerializer
 
 
-class UserCreateApiView(CreateAPIView):
+class UserCreateAPIView(CreateAPIView):
     """Generic создания пользователя"""
 
     serializer_class = UserSerializer
