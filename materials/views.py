@@ -20,16 +20,16 @@ class SectionViewSet(ModelViewSet):
 
         if self.action == "create":
             self.permission_classes = [IsAdminOrTeacher]
-        if self.action == "list":
+        elif self.action == "list":
             self.permission_classes = [IsAdminOrTeacher]
         elif self.action in ["partial_update", "update", "retrieve"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
-        if self.action == "destroy":
+        elif self.action == "destroy":
             self.permission_classes = [IsAdminOrTeacherOwner]
         return super().get_permissions()
 
     def perform_create(self, serializer):
-        """Метод переопределяющий при создании урока поле owner на текущего авторизованного пользователя."""
+        """Метод переопределяющий при создании раздела поле owner на текущего авторизованного пользователя."""
 
         serializer.save(owner=self.request.user)
 
@@ -45,9 +45,11 @@ class MaterialViewSet(ModelViewSet):
 
         if self.action == "create":
             self.permission_classes = [IsAdminOrTeacher]
-        if self.action == "list":
+        elif self.action == "list":
             self.permission_classes = [IsAuthenticated]
-        elif self.action in ["partial_update", "update", "retrieve"]:
+        elif self.action == "retrieve":
+            self.permission_classes = [IsAuthenticated]
+        elif self.action in ["partial_update", "update"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
         elif self.action == "destroy":
             self.permission_classes = [IsAdminOrTeacherOwner]
