@@ -47,7 +47,9 @@ class MaterialViewSet(ModelViewSet):
             self.permission_classes = [IsAdminOrTeacher]
         elif self.action == "list":
             self.permission_classes = [IsAuthenticated]
-        elif self.action in ["partial_update", "update", "retrieve"]:
+        elif self.action == "retrieve":
+            self.permission_classes = [IsAuthenticated]
+        elif self.action in ["partial_update", "update"]:
             self.permission_classes = [IsAdminOrTeacherOwner]
         elif self.action == "destroy":
             self.permission_classes = [IsAdminOrTeacherOwner]
