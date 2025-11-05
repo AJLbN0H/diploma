@@ -9,7 +9,7 @@ class IsAdmin(BasePermission):
 
 
 class IsTeacher(BasePermission):
-    """Класс проверяющий, является ли пользователь преподователем"""
+    """Класс проверяющий, является ли пользователь преподавателем"""
 
     def has_permission(self, request, view):
         return request.user.groups.filter(name="Преподаватели").exists()

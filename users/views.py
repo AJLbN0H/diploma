@@ -23,7 +23,7 @@ class UserCreateAPIView(CreateAPIView):
             group, created = Group.objects.get_or_create(name="Администраторы")
             user.groups.add(group)
         elif user.role == "teacher":
-            group, created = Group.objects.get_or_create(name="Преподователи")
+            group, created = Group.objects.get_or_create(name="Преподаватели")
             user.groups.add(group)
         elif user.role == "student":
             group, created = Group.objects.get_or_create(name="Студенты")
