@@ -89,13 +89,13 @@ class AnswerViewSet(ModelViewSet):
         """Метод проверки прав доступа."""
 
         if self.action == "create":
-            self.permission_classes = [IsAdminOrStudent]
+            self.permission_classes = [IsAdminOrTeacher]
         elif self.action == "list":
             self.permission_classes = [IsAuthenticated]
         elif self.action in ["partial_update", "update", "retrieve"]:
-            self.permission_classes = [IsAdminOrStudentOwner]
+            self.permission_classes = [IsAdminOrTeacher]
         elif self.action == "destroy":
-            self.permission_classes = [IsAdminOrStudentOwner]
+            self.permission_classes = [IsAdminOrTeacher]
         return super().get_permissions()
 
 
