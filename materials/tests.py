@@ -329,6 +329,7 @@ class MaterialViewSetTest(APITestCase):
 
     def test_create_material_as_student(self):
         """Тест создания материала студентом HTTP_403_FORBIDDEN."""
+
         self.client.force_authenticate(user=self.student_user)
         data = {"name": "New Material", "section": self.section.id}
         response = self.client.post(self.material_list_url, data)
